@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<h1>Welcome, {{ username }}!</h1>
+<p>You are now logged in as {{ username }}.</p>
+<h2>Your Accounts</h2>
+<ul>
+  {% for account in accounts %}
+    <li>
+      <div class="form-inline">
+        <span>{{ account.account_name }}: {{ account.account_password }}</span>
+        <form method="POST" action="{{ url_for('delete_account', account_id=account.id) }}">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+<h2>Add New Account</h2>
+<form method="POST" action="{{ url_for('add_account') }}">
+  <div class="form-group">
+    <label for="account_name">Account Name</label>
+    <input type="text" class="form-control" id="account_name" name="account_name" required>
+  </div>
+  <div class="form-group">
+    <label for="account_password">Account Password</label>
+    <input type="password" class="form-control" id="account_password" name="account_password" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Account</button>
+</form>
+
+<h2>Fetch Random Data</h2>
+<button id="fetch-random-data" class="btn btn-primary">Fetch Random Data</button>
+<div id="random-data" style="margin-top: 20px;"></div>
+
+<a href="{{ url_for('logout') }}" class="btn btn-secondary mt-3">Logout</a>
+
+<script>
+document.getElementById('fetch-random-data').addEventListener('click', function() {
+    fetch('https://random-num-api.azurewebsites.net/api/random')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('random-data').innerHTML = 'Number: ' + data.number + ', Text: ' + data.text;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+</script>
+{% endblock %}

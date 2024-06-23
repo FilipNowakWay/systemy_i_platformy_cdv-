@@ -1,0 +1,13 @@
+Flask
+pyodbc
+python-dotenv
+flask-socketio
+flask-cors
+werkzeug
+gunicorn
+eventlet
+sqlalchemy
+flask-jwt-extended
+opencensus-ext-azure 
+opencensus-ext-flask
+requests
