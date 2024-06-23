@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agar.io Clone</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        #gameCanvas {
+            display: none;
+        }
+        #winsDisplay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginForm">
+        <h1>Enter your name</h1>
+        <input type="text" id="nameInput" placeholder="Your name">
+        <button onclick="login()">Start Game</button>
+    </div>
+    <div id="winsDisplay">Wins: 0</div>
+    <canvas id="gameCanvas"></canvas>
+    <script src="game.js"></script>
+</body>
+</html>
